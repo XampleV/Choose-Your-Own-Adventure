@@ -4,49 +4,64 @@ namespace ChooseYourOwnAdventure
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
+            Random randomObject = new Random();
             /* THE MYSTERIOUS NOISE */
 
             // Start by asking for the user's name:
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("What is your name?: ");
             string name = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Hello, {name}! Welcome to our story.");
-            Console.WriteLine("It begins on a cold rainy night. You're sitting in your room and hear a noise coming from down the hall. Do you go investigate?");
+            Console.WriteLine("It's work day at MCCTC Tech Dept. You're currently in the office fixing a computer. You hear adult ed call you on the radio, do you pick up?");
             Console.Write("Type yes or no: ");
             string noiseChoice = Console.ReadLine().ToUpper();
             if (noiseChoice == "YES")
             {
-                Console.WriteLine("You walk into the hallway and see a light coming from under a door down the hall. You walk towards it. Do you open it or knock?\nType OPEN or KNOCK");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("You pick up the radio and report back and ask what they need. They say there are issues in room G-02. (A computer issue).\n\nYou reach G-02, do you knock or just open the door?");
                 string doorChoice = Console.ReadLine().ToUpper();
                 if (doorChoice == "KNOCK")
                 {
-                    Console.WriteLine("A voice behind the door speaks. It says, \"Answer this ridde: \"Poor people have it. Rich people need it. If you eat it you die. What is it?\"\nType your answer:");
-                    string riddleAnswer = Console.ReadLine().ToUpper();
-                    if (riddleAnswer == "NOTHING")
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("You knock on the door, and the door opens. The adult ed teacher shows you the computer than isn't working. Should you try to troubleshoot by opening the computer or restarting it?");
+                    string tOrRChoice = Console.ReadLine().ToUpper();
+                    if (tOrRChoice == "TROUBLESHOOT")
                     {
-                        Console.WriteLine("The door opens and NOTHING is there. You turn off the light and run back to your room and lock the door. THE END.");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("You wasted 30 mins of your time to fix it, you could've just shut off and on again. THE END.");
                     }
-                    else
+                    else if (tOrRChoice == "RESTART")
                     {
-                        Console.WriteLine("You answered incorrectly. The door doesn't open. THE END.");
-                   }
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Congrats! You solved the issue under 1 minute. the end.");
+                    }
+                    else {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("You just sit there staring doing nothing, nice."); }
 
                 }
                 else if (doorChoice == "OPEN")
                 {
-                    Console.WriteLine("The door is locked! See if one of the three keys will open it.\n Enter a number (1-3):");
-                    string keyChoice = Console.ReadLine().ToUpper();
-                    switch (keyChoice)
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Everyone stares at you for 30 seconds for being rude. You get to the PC that needs to be fixed your minds rolls 3 choices of what to do.");
+                    int randomRoll = randomObject.Next(3);
+                    switch (randomRoll)
                     {
-                        case "1":
-                            Console.WriteLine("You choose he first key. Lucky choice!\nThe door opens and NOTHING is there. Stange... \nTHE END.");
+                        case 1:
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine("Your mind chose to check the PC Compenents. You wasted 30 mins. the end.");
                             break;
-                        case "2":
-                            Console.WriteLine("You choose the second key. The door doesn't open.\nTHE END.");
+                        case 2:
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine("You chose to shut the PC off and on and it works! The power of restarting is powerful! The end");
                             break;
-                        case "3":
-                            Console.WriteLine("You choose the third key. The door doesn't open.\nTHE END.");
+                        case 3:
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine("You kicked the PC around hoping it will work, you paid $1,200 for damages. The end.");
                             break;
 
                     }
@@ -54,7 +69,7 @@ namespace ChooseYourOwnAdventure
             }
             else if (noiseChoice == "NO")
             {
-                Console.WriteLine("Not much of an adventure if we don't leave our room! The end.");
+                Console.WriteLine("Ahh, the typical. Gotcha. Have a good one.");
                 System.Environment.Exit(1);
             }
         }
